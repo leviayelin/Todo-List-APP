@@ -1,0 +1,65 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: arial,sans-serif;;
+}
+
+body{
+    min-height:100vh;
+}
+
+/* utilities  */
+.wrapper{
+    padding-top:100px;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Title */
+#title{
+    margin:40px 0;
+    font-size:50px;
+    font-weight:600px;
+    color:#3f3f3f;
+}
+
+/* Task container  */
+.tdl-container{
+    width:500px;
+    padding:20px;
+    border:2px solid #333;
+    border-radius:4px;
+}
+/* task input */
+.task-input{
+    width:100%;
+    display:flex;
+    flex-direction: row;
+}
+
+.task-input > input{
+    height:25px;
+    width:100%;
+    padding:0 5px;
+}
+
+.task-input > .btn{
+    height:25px;
+    padding:0 20px;
+    cursor: pointer;
+}
+
+/* tasks  list */
+.tasks-list{
+    margin:20px 0;
+    padding:10px;
+    background:steelblue;
+}
+
+.task{
+    display:flex;
+    flex-direction: row;;
+}
