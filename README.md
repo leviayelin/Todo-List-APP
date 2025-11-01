@@ -1,4 +1,4 @@
-#TODO LIST APP
+# TODO LIST APP
 ## about
 ###
 A simple todo-list app for writing tasks
