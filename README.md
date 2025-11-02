@@ -10,5 +10,5 @@ A simple todo-list app for writing tasks
 ## features
 ###
 - adding tasks
-- check finished task
+- check complited task
 - delete task
