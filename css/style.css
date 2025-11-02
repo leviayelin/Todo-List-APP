@@ -63,3 +63,8 @@ body{
     display:flex;
     flex-direction: row;;
 }
+
+.check{
+    text-decoration:line-through;
+    color:#6f6f6f;
+}
