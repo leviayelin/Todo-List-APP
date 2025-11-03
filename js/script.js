@@ -1,29 +1,56 @@
-// Selectors section 
-const taskFieldEl = document.querySelector('.task-input input');
-const btnAddEl = document.querySelector('.add-task');
-const taskListEl = document.querySelector('.list');
+// Feature needed :
+// - task update
+// - delete task 
+// ==============================================================
 
-const testingCheck = document.querySelectorAll('.list .task');
+// Selector section 
+const btnAddEl = document.querySelector('.add-task'); // add button
+const taskInputEl = document.querySelector('.task-input input'); // input field
+const taskListEl = document.querySelector('.list'); // task container
 
 // Function section
 const addTask = () =>{
-    // return if theres no text in input field 
-    if(taskFieldEl.value === '') return
-    try{
-       taskListEl.innerHTML += `
-            <li class="task">
-                <input type="checkbox" name="task">
-                <div>${taskFieldEl.value}</div>
-            </li>
-       `
-    }catch(err){
-        console.log(`something went wrong: ${err}`)
-    }
-    // clearing input field 
-    taskFieldEl.value = '';
+    // return if input field empty
+    if(taskInputEl.value === '') return
+    
+    // creating new task
+    const taskBox = document.createElement('li');
+    taskBox.classList.add('task');
+    // update checkbox
+    const checkBox = document.createElement('input');
+    checkBox.type = 'checkbox';
+    checkBox.classList.add('update')
+    taskBox.appendChild(checkBox);
+    // task content 
+    const taskContent = document.createElement('p');
+    taskContent.textContent = taskInputEl.value;
+    taskBox.appendChild(taskContent);
+    // delete button 
+    const btnDelEl = document.createElement('span');
+    btnDelEl.classList.add('delete');
+    btnDelEl.innerHTML = "❌";
+    taskBox.appendChild(btnDelEl);
+    // add task to list
+    taskListEl.appendChild(taskBox);
+
+    // clear input field 
+    taskInputEl.value = "";
 };
 
-// check if task as been checked or not 
+// Updating and delete task 
+const checkAndDeleteTask = (e) =>{
+    let item = e.target;
+    if(item.classList[0] === "delete"){
+        let deleteTask = item.parentElement;
+        deleteTask.remove();
+    }
+    if(item.classList[0] === "update"){
+        let check = e.target.parentElement.childNodes[1];
+        check.classList.toggle('completed');
+    }
+};
+
 
 // Running 
 btnAddEl.addEventListener('click',addTask);
+taskListEl.addEventListener('click', checkAndDeleteTask);
