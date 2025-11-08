@@ -1,15 +1,19 @@
-// Feature needed :
-// - task update
-// - delete task 
+// Feature needed -
+// - loacl storage understanding 
+// - filtering tasks : All, Pendding, Complete
 // ==============================================================
 
 // Selector section 
-const btnAddEl = document.querySelector('.add-task'); // add button
-const taskInputEl = document.querySelector('.task-input input'); // input field
-const taskListEl = document.querySelector('.list'); // task container
+const formEl = document.querySelector('.form'); // add button
+const taskInputEl = document.querySelector('.form input'); // input field
+const taskListEl = document.querySelector('.tasks-box'); // task container
+
+// local storage section 
 
 // Function section
-const addTask = () =>{
+const addTask = (e) =>{
+    // prevent refresh default 
+    e.preventDefault();
     // return if input field empty
     if(taskInputEl.value === '') return
     
@@ -20,15 +24,17 @@ const addTask = () =>{
     const checkBox = document.createElement('input');
     checkBox.type = 'checkbox';
     checkBox.classList.add('update')
-    taskBox.appendChild(checkBox);
     // task content 
+    const labelTask = document.createElement('label');
     const taskContent = document.createElement('p');
     taskContent.textContent = taskInputEl.value;
-    taskBox.appendChild(taskContent);
+    labelTask.appendChild(taskContent);
+    labelTask.appendChild(checkBox);
+    taskBox.appendChild(labelTask);
     // delete button 
-    const btnDelEl = document.createElement('span');
+    const btnDelEl = document.createElement('div');
     btnDelEl.classList.add('delete');
-    btnDelEl.innerHTML = "❌";
+    btnDelEl.innerHTML = "🗑️";
     taskBox.appendChild(btnDelEl);
     // add task to list
     taskListEl.appendChild(taskBox);
@@ -45,12 +51,12 @@ const checkAndDeleteTask = (e) =>{
         deleteTask.remove();
     }
     if(item.classList[0] === "update"){
-        let check = e.target.parentElement.childNodes[1];
+        let check = e.target.parentElement.childNodes[0];
         check.classList.toggle('completed');
     }
 };
 
 
 // Running 
-btnAddEl.addEventListener('click',addTask);
+formEl.addEventListener('submit',addTask);
 taskListEl.addEventListener('click', checkAndDeleteTask);

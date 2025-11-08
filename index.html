@@ -11,15 +11,24 @@
         <!-- Title  -->
         <!-- <h2 id="title">TODO LIST APP</h2> -->
         <!-- Todo List container  -->
-        <div class="tdl-container">
+        <div class="container">
             <!-- Tasks input container  -->
-            <div class="task-input">
-                <input type="text" name="task" value="" placeholder="task...">
-                <button class="btn add-task">ADD</button>
-            </div>
+            <form class="form">
+                <label for="task-input">
+                    <input id="task-input" type="text" name="task" placeholder="add task...">
+                </label>
+                <div>
+                    <!-- <select name="user-tasks" size="0">
+                        <option value="default">------</option>
+                        <option value="all">all</option>
+                        <option value="pendding">pendding</option>
+                        <option value="completed">completed</option>
+                    </select> -->
+                </div>
+            </form>
             <!-- Tasks List container   -->
-            <div class="tasks-list">
-                <ul class="list">
+            <div>
+                <ul class="tasks-box">
                     <!-- Task list  -->
                 </ul>
             </div>
