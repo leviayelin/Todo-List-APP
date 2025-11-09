@@ -8,55 +8,69 @@ const formEl = document.querySelector('.form'); // add button
 const taskInputEl = document.querySelector('.form input'); // input field
 const taskListEl = document.querySelector('.tasks-box'); // task container
 
-// local storage section 
+// local storage section
+// setting name storage and parsing it
+let todos = JSON.parse(localStorage.getItem('todos')); 
 
 // Function section
+const showTodos = (filter)=>{
+    let liEl = '';
+    // if todos exists
+    if(todos){
+        todos.forEach((todo,id)=>{
+            let completed = todos.status == "Completed"?"check":"";
+            if(filter == todo.status || filter == "all"){
+                liEl += `
+                    <li class="task">
+                        <label for="${id}">
+                            <input onClick="updateStatus(this)" id="${id}" type="checkbox" ${completed}/>
+                            <p class="${completed}">${todo.name}</p>
+                        </label>
+                    </li>
+                `;
+            }
+        });
+
+    }
+    taskListEl.innerHTML = liEl || `<span>there's no task here</span>`;
+    // let checkTask = taskListEl.querySelectorAll(".task")
+};
+
+// update task
+const updateStatus = (e)=>{
+    let taskName = e.parentElement.lastElementChild;
+    if(e.checked){
+        taskName.classList.add('check');
+        todos[e.id].status = "Completed";
+    }else{
+        taskName.classList.remove('check');
+        todos[e.id].status = "Pending";
+    }
+    localStorage.setItem('todos', JSON.stringify(todos));
+};
+
 const addTask = (e) =>{
     // prevent refresh default 
     e.preventDefault();
+    let userTask = taskInputEl.value.trim();
     // return if input field empty
     if(taskInputEl.value === '') return
-    
-    // creating new task
-    const taskBox = document.createElement('li');
-    taskBox.classList.add('task');
-    // update checkbox
-    const checkBox = document.createElement('input');
-    checkBox.type = 'checkbox';
-    checkBox.classList.add('update')
-    // task content 
-    const labelTask = document.createElement('label');
-    const taskContent = document.createElement('p');
-    taskContent.textContent = taskInputEl.value;
-    labelTask.appendChild(taskContent);
-    labelTask.appendChild(checkBox);
-    taskBox.appendChild(labelTask);
-    // delete button 
-    const btnDelEl = document.createElement('div');
-    btnDelEl.classList.add('delete');
-    btnDelEl.innerHTML = "🗑️";
-    taskBox.appendChild(btnDelEl);
-    // add task to list
-    taskListEl.appendChild(taskBox);
-
+    // condition - if todos as no exists tasks create new array,
+    // if it does get them
+    todos = !todos ? [] : todos;
+    // create new task object
+    let newTaskData = {name:userTask,status:"Pending"};
+    todos.push(newTaskData);
     // clear input field 
     taskInputEl.value = "";
+    // stored the new data in an exsits or new todos storage
+    localStorage.setItem("todos", JSON.stringify(todos));
+    // show current tasks list data
+    showTodos(document.querySelector("span.active").id);
 };
 
-// Updating and delete task 
-const checkAndDeleteTask = (e) =>{
-    let item = e.target;
-    if(item.classList[0] === "delete"){
-        let deleteTask = item.parentElement;
-        deleteTask.remove();
-    }
-    if(item.classList[0] === "update"){
-        let check = e.target.parentElement.childNodes[0];
-        check.classList.toggle('completed');
-    }
-};
+showTodos("all");
 
 
 // Running 
 formEl.addEventListener('submit',addTask);
-taskListEl.addEventListener('click', checkAndDeleteTask);

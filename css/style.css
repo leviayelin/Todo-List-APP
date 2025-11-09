@@ -25,12 +25,6 @@ body{
 }
 
 /* Title */
-/* #title{
-    margin:40px 0;
-    font-size:50px;
-    font-weight:600px;
-    color:#3f3f3f;
-} */
 
 /* Task container  */
 .container{
@@ -55,12 +49,12 @@ body{
     outline:none;
     font-size:18px;
     border-radius:5px;
-    padding:0 20px 0 53px;
+    padding:0 53px 0 20px;
     border:1px solid #999;
 }
 
 .form input:focus{
-    padding-left: 52px;
+    /* padding-left: 52px; */
     border:2px solid #3c87ff;
 }
 
@@ -72,7 +66,7 @@ body{
 .tasks-box{
     margin-top:20px;
     margin-right:5px;
-    padding:0 20px 10px 5px;
+    padding:0 20px 10px 20px;
 }
 
 .tasks-box.overflow{
@@ -103,6 +97,12 @@ body{
     border-bottom:1px solid #ccc;
 }
 
+li{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
 .tasks-box .task:last-child{
     margin-bottom:0;
     border-bottom:0;
@@ -116,6 +116,7 @@ body{
 
 .task label input{
   margin-top: 7px;
+  margin-left:12px;
   accent-color: #3C87FF;
 }
 
@@ -125,7 +126,11 @@ body{
     word-wrap:break-word;
 }
 
-.completed{
+.task label p.check{
+    text-decoration:line-through;
+}
+
+.check{
     text-decoration:line-through;
     color:#6f6f6f;
 }
