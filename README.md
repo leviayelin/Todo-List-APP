@@ -2,7 +2,7 @@
 ## about
 ###
 A simple todo-list app for writing tasks, store, check and delete them.
-##technology
+## technology
 ###
 - HTML
 - CSS
