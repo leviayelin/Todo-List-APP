@@ -1,7 +1,7 @@
 # TODO LIST APP
 ## about
 ###
-A simple todo-list app for writing tasks, store, check and delete them.
+A simple todo-list app for writing tasks, store, check, edit & delete them.
 ## technology
 ###
 - HTML
@@ -13,4 +13,5 @@ A simple todo-list app for writing tasks, store, check and delete them.
 - adding tasks
 - check task
 - delete task
-- filters tasks buttons 
+- filters tasks buttons
+- task settings : edit & delete
