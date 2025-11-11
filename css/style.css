@@ -17,7 +17,6 @@ body{
 
 /* utilities  */
 .wrapper{
-    padding-top:100px;
     display:flex;
     flex-direction: column;
     justify-content:center;
@@ -60,6 +59,31 @@ body{
 
 .from input::placeholder{
     color:#bfbfbf;
+}
+
+/* Filter controls section  */
+.controls{
+    padding:18px 25px;
+    border-bottom:1px solid #ccc;
+    display:flex;
+    align-items: center;
+    justify-content:space-between;
+}
+
+.filters span{
+    margin:0 8px;
+    font-size:17px;
+    color:#444444;
+    cursor:pointer;
+    float:left;
+}
+
+.filters span:first-child{
+    margin-left:0;
+}
+
+.filters span.active{
+    color:#3C87FF;
 }
 
 /* Tasks list container selector section  */
@@ -126,11 +150,11 @@ li{
     word-wrap:break-word;
 }
 
-.task label p.check{
+.task label p.checked{
     text-decoration:line-through;
 }
 
-.check{
+.checked{
     text-decoration:line-through;
     color:#6f6f6f;
 }
