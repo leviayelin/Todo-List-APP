@@ -9,7 +9,7 @@
 }
 
 body{
-    min-height:100vh;
+    height:100vh;
     width:100%;
     overflow:hidden;
     background:linear-gradient(135deg, #4AB1FF, #2D5CFE);
@@ -27,7 +27,7 @@ body{
 
 /* Task container  */
 .container{
-    max-width:450px;
+    width:450px;
     padding:28px 0 30px;
     margin:137px auto;
     background:#f3f3f3;
@@ -42,18 +42,33 @@ body{
     position:relative;
 }
 
+.form label{
+    width:100%;;
+    height:100%;
+    margin:0;
+    padding:0;
+    border:none;
+    outline:none;
+}
+
+.form img{
+    position:absolute;
+    top:50%;
+    transform:translate(17px,-50%);
+}
+
 .form input{
     height:100%;
     width:100%;
     outline:none;
     font-size:18px;
     border-radius:5px;
-    padding:0 53px 0 20px;
+    padding:0 20px 0 53px;
     border:1px solid #999;
 }
 
 .form input:focus{
-    /* padding-left: 52px; */
+    padding-left: 52px;
     border:2px solid #3c87ff;
 }
 
@@ -95,6 +110,7 @@ body{
     padding:7px 13px;
     border-radius:4px;
     letter-spacing:0.3px;
+    pointer-events:none;
     transition:transform 0.25s ease;
     background:linear-gradient(135deg, #1798fb 0%,#2D5CFE 100%);
     cursor:pointer;
@@ -131,7 +147,7 @@ body{
 }
 
 .tasks-box::-webkit-scrollbar-thumb{
-  background: #e6e6e6;
+  background: #999;
   border-radius: 25px;
 }
 

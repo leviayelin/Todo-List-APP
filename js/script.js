@@ -9,6 +9,7 @@ const formEl = document.querySelector('.form'); // add button
 const taskInputEl = document.querySelector('.form input'); // input field
 const taskListEl = document.querySelector('.tasks-box'); // task container
 const filters = document.querySelectorAll(".filters span");// filters buttons
+const clearAllBtn = document.querySelector('.clear-btn'); // clear/delete all tasks 
 
 // Task settings menu - edit & delete
 let editId;
@@ -40,6 +41,7 @@ const showTodos = (filter)=>{
         todos.forEach((todo,id)=>{
             // check data object status 
             let completed = todo.status == "completed"?"checked":"";
+            // check which data to show based on the arg input
             if(filter == todo.status || filter == "all"){
                 liEl += `
                     <li class="task">
@@ -63,7 +65,9 @@ const showTodos = (filter)=>{
     taskListEl.innerHTML = liEl || `<span>there's no task here</span>`;
     // enable scrolling on tasks box
     taskListEl.offsetHeight >= 300? taskListEl.classList.add('overflow'): taskListEl.classList.remove('overflow');
-    // let checkTask = taskListEl.querySelectorAll(".task")
+    // get current tasks exists by length
+    let checkTask = taskListEl.querySelectorAll(".task");
+    !checkTask.length ? clearAllBtn.classList.remove('active'):clearAllBtn.classList.add('active');
 };
 
 // show task settings menu - close & open
@@ -149,3 +153,12 @@ showTodos("all");
 
 // Running 
 formEl.addEventListener('submit',addTask);
+clearAllBtn.addEventListener('click', ()=>{
+    isEditTask = false;
+    // get the first item in todos array and with 
+    // second parameter all the other items by using length
+    todos.splice(0,todos.length);
+    // setting the new todos and sending back to localStorage 
+    localStorage.setItem('todos', JSON.stringify(todos));
+    showTodos();
+})
